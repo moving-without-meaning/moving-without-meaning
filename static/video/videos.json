@@ -1,0 +1,92 @@
+[
+ {
+  "item": "grw-v2-000511",
+  "word": "large",
+  "file": "static/video/large.mp4",
+  "poster": "static/video/large.jpg",
+  "scores": {
+   "gt": 1.0,
+   "rag": 0.057,
+   "semtalk": 0.057,
+   "gesturelsm": 0.057,
+   "emage": 0.057,
+   "mambatalk": 0.057,
+   "miburi": 0.0
+  }
+ },
+ {
+  "item": "grw-v2-000551",
+  "word": "long",
+  "file": "static/video/long.mp4",
+  "poster": "static/video/long.jpg",
+  "scores": {
+   "gt": 1.0,
+   "rag": 1.0,
+   "semtalk": 0.278,
+   "gesturelsm": 0.167,
+   "emage": 0.333,
+   "mambatalk": 0.333,
+   "miburi": 0.333
+  }
+ },
+ {
+  "item": "grw-v2-000129",
+  "word": "circle",
+  "file": "static/video/circle.mp4",
+  "poster": "static/video/circle.jpg",
+  "scores": {
+   "gt": 0.947,
+   "rag": 0.211,
+   "semtalk": 0.526,
+   "gesturelsm": 0.474,
+   "emage": 0.526,
+   "mambatalk": 0.211,
+   "miburi": 0.211
+  }
+ },
+ {
+  "item": "grw-v2-000054",
+  "word": "below",
+  "file": "static/video/below.mp4",
+  "poster": "static/video/below.jpg",
+  "scores": {
+   "gt": 0.974,
+   "rag": 0.013,
+   "semtalk": 0.026,
+   "gesturelsm": 0.013,
+   "emage": 0.0,
+   "mambatalk": 0.013,
+   "miburi": 0.013
+  }
+ },
+ {
+  "item": "grw-v2-000805",
+  "word": "stop",
+  "file": "static/video/stop.mp4",
+  "poster": "static/video/stop.jpg",
+  "scores": {
+   "gt": 1.0,
+   "rag": 0.1,
+   "semtalk": 0.1,
+   "gesturelsm": 0.0,
+   "emage": 0.1,
+   "mambatalk": 0.0,
+   "miburi": 0.0
+  }
+ },
+ {
+  "item": "grw-v2-000870",
+  "word": "tiny",
+  "file": "static/video/tiny.mp4",
+  "poster": "static/video/tiny.jpg",
+  "scores": {
+   "gt": 1.0,
+   "rag": 0.042,
+   "semtalk": 0.042,
+   "gesturelsm": 0.042,
+   "emage": 0.042,
+   "mambatalk": 0.042,
+   "miburi": 0.0
+  }
+ }
+]

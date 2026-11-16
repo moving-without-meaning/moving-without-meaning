@@ -21,11 +21,13 @@
   <div class="nav-inner">
     <a class="nav-brand" href="#overview">Moving Without Meaning</a>
     <div class="nav-links">
+      <a href="#watch">Videos</a>
       <a href="#abstract">Abstract</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#validity">Does SER Work?</a>
       <a href="#results">Results</a>
       <a href="#examples">Examples</a>
+      <a href="#gallery">Gallery</a>
       <a href="#bibtex">Citation</a>
     </div>
   </div>
@@ -54,6 +56,23 @@
       <img src="static/img/teaser.png" alt="A speaker says 'huge' and spreads both hands. GestureLSM also spreads its arms, while EMAGE and MIBURI do not. FGD, beat consistency and diversity do not separate them; SER does.">
       <figcaption><strong>Current metrics do not measure whether generated gestures show the meaning of a word.</strong> The speaker says &ldquo;huge&rdquo; and spreads both hands. GestureLSM also spreads its arms, but EMAGE and MIBURI do not. FGD (on this sample alone), beat consistency and diversity do not separate them. Our Semantic Expressiveness Rating (SER) compares each clip with human references for the same word, and only the reconstructed motion and GestureLSM score above a typical human gesture (1500). We chose this sample to illustrate the scale; GestureLSM ranks 8th of 11 overall.</figcaption>
     </figure>
+  </section>
+
+  <section class="section" id="watch">
+    <div class="card">
+      <h2>Watch the Judge</h2>
+      <p class="lead">One sentence, the speaker and several generators. Below the motion, each clip's judge score for the marked word is drawn live, in the clip's colour. Clips that show the word rise inside the scored span; the others stay flat. Turn on the sound to hear the sentence.</p>
+      <div class="tabs" role="tablist" aria-label="Example">
+        <button role="tab" aria-selected="true" data-video="static/video/score_horizontal.mp4" data-poster="static/video/score_horizontal.jpg" data-cap="<strong>&ldquo;horizontal&rdquo;.</strong> The speaker beats all human references for the word. SemTalk (82%) and, less clearly, RAG-Gesture (36%) also gesture for it, and their scores rise inside the scored span. GestureLSM, EMAGE, MambaTalk and MIBURI beat at most 9% and stay flat.">&ldquo;horizontal&rdquo;</button>
+        <button role="tab" aria-selected="false" data-video="static/video/score_long.mp4" data-poster="static/video/score_long.jpg" data-cap="<strong>&ldquo;long&rdquo;.</strong> RAG-Gesture retrieves a gesture labelled &ldquo;long&rdquo; from its library and, like the speaker, beats all human references. SemTalk, GestureLSM, EMAGE and MIBURI beat 17% to 33%, and their scores stay low.">&ldquo;long&rdquo;</button>
+      </div>
+      <figure class="fig">
+        <video id="watch-video" class="video" controls loop playsinline preload="metadata" poster="static/video/score_horizontal.jpg">
+          <source src="static/video/score_horizontal.mp4" type="video/mp4">
+        </video>
+        <figcaption id="watch-cap"><strong>&ldquo;horizontal&rdquo;.</strong> The speaker beats all human references for the word. SemTalk (82%) and, less clearly, RAG-Gesture (36%) also gesture for it, and their scores rise inside the scored span. GestureLSM, EMAGE, MambaTalk and MIBURI beat at most 9% and stay flat.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="section" id="abstract">
@@ -154,6 +173,27 @@
     </div>
   </section>
 
+  <section class="section" id="gallery">
+    <div class="card">
+      <h2>More Examples</h2>
+      <p class="lead">Each video plays one benchmark sentence with its audio: the real speaker, the speaker's reconstructed motion, and six generators on the same 4 seconds. Each clip shows the share of human references for the marked word that it beats.</p>
+      <div class="tabs" role="tablist" aria-label="Word">
+        <button role="tab" aria-selected="true" data-video="static/video/large.mp4" data-poster="static/video/large.jpg" data-cap="<strong>&ldquo;large&rdquo;</strong>. The speaker beats 100% of human references for the word. The six generators beat 0% to 6%.">large</button>
+        <button role="tab" aria-selected="false" data-video="static/video/long.mp4" data-poster="static/video/long.jpg" data-cap="<strong>&ldquo;long&rdquo;</strong>. The speaker beats 100% of human references for the word. RAG-Gesture also beats 100%; the other generators beat 17% to 33%.">long</button>
+        <button role="tab" aria-selected="false" data-video="static/video/circle.mp4" data-poster="static/video/circle.jpg" data-cap="<strong>&ldquo;circle&rdquo;</strong>. The speaker beats 95% of human references for the word. SemTalk and EMAGE beat 53% and GestureLSM 47%, about half as many as the speaker; the others beat 21%.">circle</button>
+        <button role="tab" aria-selected="false" data-video="static/video/below.mp4" data-poster="static/video/below.jpg" data-cap="<strong>&ldquo;below&rdquo;</strong>. The speaker beats 97% of human references for the word. The six generators beat 0% to 3%.">below</button>
+        <button role="tab" aria-selected="false" data-video="static/video/stop.mp4" data-poster="static/video/stop.jpg" data-cap="<strong>&ldquo;stop&rdquo;</strong>. The speaker beats 100% of human references for the word. The six generators beat 0% to 10%.">stop</button>
+        <button role="tab" aria-selected="false" data-video="static/video/tiny.mp4" data-poster="static/video/tiny.jpg" data-cap="<strong>&ldquo;tiny&rdquo;</strong>. The speaker beats 100% of human references for the word. The six generators beat 0% to 4%.">tiny</button>
+      </div>
+      <figure class="fig">
+        <video id="gallery-video" class="video" controls loop playsinline preload="metadata" poster="static/video/large.jpg">
+          <source src="static/video/large.mp4" type="video/mp4">
+        </video>
+        <figcaption id="gallery-cap"><strong>&ldquo;large&rdquo;</strong>. The speaker beats 100% of human references for the word. The six generators beat 0% to 6%.</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section class="section" id="bibtex">
     <div class="card">
       <h2>BibTeX</h2>
@@ -178,12 +218,21 @@
 
 <script>
   // tabs for the word-curve figures
-  const tabs = document.querySelectorAll('.tabs [role="tab"]');
+  const tabs = document.querySelectorAll('#examples .tabs [role="tab"]');
   tabs.forEach(t => t.addEventListener('click', () => {
     tabs.forEach(o => o.setAttribute('aria-selected', String(o === t)));
     document.getElementById('wc-img').src = t.dataset.src;
     document.getElementById('wc-cap').innerHTML = t.dataset.cap;
   }));
+  // tabs that switch a video player (judge videos and gallery)
+  [['watch', 'watch-video', 'watch-cap'], ['gallery', 'gallery-video', 'gallery-cap']].forEach(([sec, vidId, capId]) => {
+    const bt = document.querySelectorAll('#' + sec + ' .tabs [role="tab"]'), v = document.getElementById(vidId);
+    bt.forEach(t => t.addEventListener('click', () => {
+      bt.forEach(o => o.setAttribute('aria-selected', String(o === t)));
+      v.poster = t.dataset.poster; v.querySelector('source').src = t.dataset.video; v.load(); v.play().catch(() => {});
+      document.getElementById(capId).innerHTML = t.dataset.cap;
+    }));
+  });
   // copy the BibTeX entry
   document.getElementById('copy-bib').addEventListener('click', async e => {
     const b = e.currentTarget, txt = document.getElementById('bib').textContent;

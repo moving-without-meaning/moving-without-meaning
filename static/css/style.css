@@ -130,3 +130,10 @@ tr.ours td { font-weight: 700; color: var(--accent); background: var(--accent-so
   .nav-links { display: none; }
   .abstract { text-align: left; }
 }
+
+/* videos */
+.video { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 8px; }
+.gallery figure { margin: 0; }
+.gallery figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; }
+.gallery figcaption strong { color: var(--ink); }

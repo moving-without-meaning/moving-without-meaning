@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moving Without Meaning</title>
+<meta name="description" content="A benchmark that measures whether generated co-speech gestures show the meaning of the speech, compared with how people gesture for the same word.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Moving Without Meaning: Benchmarking Semantic Expressiveness in Co-Speech Gesture Generation">
+<meta property="og:description" content="A judge trained on word-level gesture labels, and the Semantic Expressiveness Rating (SER), an Elo-style scale where a typical human gesture scores 1500.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<nav class="nav" aria-label="Page sections">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#overview">Moving Without Meaning</a>
+    <div class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#validity">Does SER Work?</a>
+      <a href="#results">Results</a>
+      <a href="#examples">Examples</a>
+      <a href="#bibtex">Citation</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero" id="overview">
+    <div class="hero-card">
+      <span class="badge">Project Page</span>
+      <h1 class="title">Moving Without Meaning: Benchmarking Semantic Expressiveness in Co&#8209;Speech Gesture Generation</h1>
+      <p class="subtitle">Do generated gestures show what the speech means? A benchmark that compares them with how people gesture for the same word.</p>
+      <div class="authors">Anonymous Authors</div>
+      <div class="venue"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Under review</div>
+      <div class="buttons">
+        <span class="btn disabled" title="Available after review"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i> Paper <em>soon</em></span>
+        <span class="btn disabled" title="Available after review"><i class="fa-brands fa-github" aria-hidden="true"></i> Code <em>soon</em></span>
+        <span class="btn disabled" title="Available after review"><i class="fa-solid fa-cube" aria-hidden="true"></i> Judge weights <em>soon</em></span>
+        <a class="btn" href="#bibtex"><i class="fa-solid fa-quote-right" aria-hidden="true"></i> BibTeX</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <figure class="teaser">
+      <img src="static/img/teaser.png" alt="A speaker says 'huge' and spreads both hands. GestureLSM also spreads its arms, while EMAGE and MIBURI do not. FGD, beat consistency and diversity do not separate them; SER does.">
+      <figcaption><strong>Current metrics do not measure whether generated gestures show the meaning of a word.</strong> The speaker says &ldquo;huge&rdquo; and spreads both hands. GestureLSM also spreads its arms, but EMAGE and MIBURI do not. FGD (on this sample alone), beat consistency and diversity do not separate them. Our Semantic Expressiveness Rating (SER) compares each clip with human references for the same word, and only the reconstructed motion and GestureLSM score above a typical human gesture (1500). We chose this sample to illustrate the scale; GestureLSM ranks 8th of 11 overall.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section" id="abstract">
+    <div class="card">
+      <h2>Abstract</h2>
+      <p class="abstract">Co-speech gesture generators now animate characters in film, games and virtual agents. They produce natural motion that follows the rhythm of speech. However, they rarely produce meaningful gestures that show what the speech means. Moreover, current benchmarks measure only rhythm and realism, and none evaluate whether a gesture shows a word's meaning. Additionally, measuring the semantic expressiveness of a gesture has several challenges. People gesture for the same word in many forms, and some show it more clearly than others. A single ground-truth pose cannot capture this range. We introduce a benchmark that grades the semantic expressiveness of a generated gesture, <em>i.e.</em>, how well it shows a word compared with how people gesture for it. Our judge is trained on word-level gesture labels from three datasets and scores how well a clip shows a marked word in its sentence. It then compares a generated clip's score with those of people who gesture for the same word. The comparison gives the Semantic Expressiveness Rating (SER), an Elo-style scale where a typical human gesture scores 1500. Our results show that the judge tells which word a held-out human gesture shows, while existing scorers stay near chance. Lastly, we benchmark ten recent generators and find that generating semantically expressive gestures remains challenging.</p>
+    </div>
+  </section>
+
+  <section class="section" id="benchmark">
+    <div class="card">
+      <h2>The Benchmark</h2>
+      <p class="lead">A word has no single right gesture. Instead of matching one recorded pose, we score how well a clip shows a word and compare that score with held-out people who gesture for the same word.</p>
+      <div class="metrics">
+        <div class="metric"><strong>A learned judge</strong><span>Scores how well a motion clip shows a marked word in its sentence, trained on word-level gesture labels from three datasets.</span></div>
+        <div class="metric"><strong>SER</strong><span>An Elo-style rating of the share of human references a clip beats. A typical human gesture for the word scores 1500.</span></div>
+        <div class="metric"><strong>2,148 samples</strong><span>From GRW (in the wild), Seamless Interaction and BEAT2, with at least 8 human references per word.</span></div>
+      </div>
+      <figure class="fig">
+        <img src="static/img/overview.png" alt="Overview of the benchmark on one sample: word spans, clip and adjusted scores from the judge, the win rate against references, and the dataset score converted to SER.">
+        <figcaption><strong>Scoring one sample.</strong> (a) Each word of the sample with enough references is scored in its span, from 1&nbsp;s before to 0.5&nbsp;s after the word. (b) The judge scores the generated clip on each word; the mean of its five highest frame scores, minus its mean score on 40 unrelated words, gives the adjusted score. (c) The win rate is the share of references, people gesturing for the word, that the clip beats. (d) We average over samples, words and datasets and convert the result to SER.</figcaption>
+      </figure>
+      <figure class="fig narrow">
+        <img src="static/img/judge.png" alt="Schematic of one training batch of the judge: a T5 text encoder, a motion encoder, and contrastive, sigmoid and cross-dataset losses.">
+        <figcaption><strong>Training the judge.</strong> T5 encodes each sentence into a vector for its marked word, and a temporal convolutional network encodes each frame of a clip. The contrastive loss tells gestures for different words apart, the sigmoid loss gives a low score when no gesture shows the word, and the cross-dataset term links the same word across datasets.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="validity">
+    <div class="card">
+      <h2>Does SER Reliably Measure Semantic Expressiveness?</h2>
+      <p class="lead">The judge recognizes which word a held-out human gesture shows, where existing scorers stay close to chance.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Right-word accuracy on the benchmark samples: how often a held-out gesture for the marked word scores above a gesture for another word. Chance is 0.5.</caption>
+          <thead><tr><th>Scorer</th><th>GRW</th><th>Seamless</th><th>BEAT2</th></tr></thead>
+          <tbody>
+            <tr class="ours"><td>Judge (ours)</td><td>0.834</td><td>0.781</td><td>0.730</td></tr>
+            <tr><td>TMR, released</td><td>0.521</td><td>0.559</td><td>0.533</td></tr>
+            <tr><td>TMR, retrained on our data</td><td>0.771</td><td>0.742</td><td>0.706</td></tr>
+            <tr><td>FGD features</td><td>0.591</td><td>0.584</td><td>0.577</td></tr>
+            <tr><td>Kinematic statistics</td><td>0.563</td><td>0.550</td><td>0.542</td></tr>
+            <tr><td>CLIP ViT-L/14</td><td>0.529</td><td>0.512</td><td>0.513</td></tr>
+            <tr><td>X-CLIP</td><td>0.511</td><td>0.505</td><td>0.493</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figure class="fig narrow">
+        <img src="static/img/edits.png" alt="SER after controlled edits: shrinking, shifting or mixing a real gesture lowers SER toward the floors; blending a person's gesture for the word into generated motion raises it.">
+        <figcaption><strong>SER follows controlled edits.</strong> Shrinking a real gesture toward the mean pose, shifting it in time against the audio, or mixing it with a gesture for another word lowers SER gradually toward the floors. Blending a held-out person's gesture for the word into generated motion raises the generators' SER from 1230 to 1316 and 1387.</figcaption>
+      </figure>
+      <div class="callout">
+        <i class="fa-solid fa-users" aria-hidden="true"></i>
+        <p><strong>Agreement with people.</strong> Three raters compared 150 pairs of clips and chose the one that shows the marked word better. The judge agrees with the majority of two raters on 79% of the pairs of a generated clip and a human reference, close to the 83% agreement between raters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="card">
+      <h2>What Does SER Reveal About Current Generators?</h2>
+      <p class="lead">Semantically expressive gestures remain challenging for all ten generators, which leaves clear room for improvement.</p>
+      <div class="metrics">
+        <div class="metric"><strong>200&ndash;260 SER</strong><span>Gap between the generators (1247 to 1303) and the ground-truth motion (1507) on speech they were not trained on.</span></div>
+        <div class="metric"><strong>Close to the floors</strong><span>All generators score near human motion that does not show the word: a gesture for another word, or no gesture.</span></div>
+        <div class="metric"><strong>Also on BEAT2</strong><span>On their own training data, the gap shrinks to 51&ndash;150 SER but remains.</span></div>
+      </div>
+      <figure class="fig narrow">
+        <img src="static/img/ranking.png" alt="Ranking of ten generators against the ground-truth motion and two floors, out of domain and on BEAT2, with 95% confidence intervals.">
+        <figcaption><strong>Benchmark ranking of ten generators</strong> against the ground-truth motion and two floors. SER out of domain (amber; GRW, Seamless) and in domain (indigo; BEAT2), with 95% CIs. Shaded: floors. Dashed: a typical human gesture. Significantly * above the other-word floor or &dagger; below the top generator.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="examples">
+    <div class="card">
+      <h2>How the Judge Reads a Clip</h2>
+      <p class="lead">The judge's score for each word of the sentence over time, on the sample from the teaser. All four clips move during the speaker's gesture, but only the two that spread their hands score high for &ldquo;huge&rdquo;.</p>
+      <div class="tabs" role="tablist" aria-label="Clip">
+        <button role="tab" aria-selected="true" aria-controls="wc-panel" data-src="static/img/wc_speaker.png" data-cap="<strong>Ground-truth motion.</strong> The score for &ldquo;huge&rdquo; rises as the speaker spreads both hands and peaks at 0.37, 0.3&nbsp;s after the word, the highest of all 17 words. The clip beats 28 of 33 references.">Ground truth</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_gesturelsm.png" data-cap="<strong>GestureLSM.</strong> It spreads both arms wide, and &ldquo;huge&rdquo; peaks at 0.45 right on the word. The clip beats 32 of 33 references, an exception for a generator that ranks 8th of 11 overall.">GestureLSM</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_emage.png" data-cap="<strong>EMAGE.</strong> It raises one hand toward its face but never spreads its hands. &ldquo;Huge&rdquo; stays close to zero, 14 other words peak higher, and the clip beats only 4 of 33 references.">EMAGE</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_miburi.png" data-cap="<strong>MIBURI.</strong> &ldquo;Huge&rdquo; peaks right on the word, so the timing is right, but the hand goes to the face. Eight other words peak higher, and the clip beats only 6 of 33 references.">MIBURI</button>
+      </div>
+      <figure class="fig" id="wc-panel" role="tabpanel">
+        <img id="wc-img" src="static/img/wc_speaker.png" alt="Judge scores over time for each word of the sentence, with the word 'huge' highlighted.">
+        <figcaption id="wc-cap"><strong>Ground-truth motion.</strong> The score for &ldquo;huge&rdquo; rises as the speaker spreads both hands and peaks at 0.37, 0.3&nbsp;s after the word, the highest of all 17 words. The clip beats 28 of 33 references.</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="static/img/semtalk_rag.png" alt="SemTalk and RAG-Gesture on a sample for 'long': SemTalk moves faster when its semantic gate is on but does not gesture for the word, while RAG-Gesture with retrieval spreads both arms wide.">
+        <figcaption><strong>SemTalk emphasizes, while RAG-Gesture with retrieval gestures for the word.</strong> On a sample for &ldquo;long&rdquo;, SemTalk moves its hands faster and further while its semantic gate is on, but does not gesture for the word. With retrieval, RAG-Gesture inserts a gesture labelled &ldquo;long&rdquo;, spreads both arms wide and beats all 18 references.</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="static/img/vlm_explode.png" alt="A vision-language model and our judge on a gesture for 'explode'.">
+        <figcaption><strong>Why vision-language models fail.</strong> Qwen3.8 describes the speaker flinging both arms wide when it chooses among five words, but calls the same movement shrug-like when asked about &ldquo;explode&rdquo; directly. Our judge picks the right word.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="bibtex">
+    <div class="card">
+      <h2>BibTeX</h2>
+      <div class="bibtex">
+        <button class="copy" type="button" id="copy-bib"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copy</button>
+<pre><code id="bib">@inproceedings{anonymous2027moving,
+  title     = {Moving Without Meaning: Benchmarking Semantic Expressiveness
+               in Co-Speech Gesture Generation},
+  author    = {Anonymous Authors},
+  booktitle = {Under review},
+  year      = {2027}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Project page for an anonymous submission. Paper, code and judge weights will be released after review.</p>
+</footer>
+
+<script>
+  // tabs for the word-curve figures
+  const tabs = document.querySelectorAll('.tabs [role="tab"]');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(o => o.setAttribute('aria-selected', String(o === t)));
+    document.getElementById('wc-img').src = t.dataset.src;
+    document.getElementById('wc-cap').innerHTML = t.dataset.cap;
+  }));
+  // copy the BibTeX entry
+  document.getElementById('copy-bib').addEventListener('click', async e => {
+    const b = e.currentTarget, txt = document.getElementById('bib').textContent;
+    try { await navigator.clipboard.writeText(txt); b.innerHTML = '<i class="fa-solid fa-check"></i> Copied'; }
+    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById('bib'));
+            const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Press Ctrl+C'; }
+    setTimeout(() => { b.innerHTML = '<i class="fa-regular fa-copy"></i> Copy'; }, 1800);
+  });
+</script>
+</body>
+</html>

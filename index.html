@@ -21,8 +21,8 @@
   <div class="nav-inner">
     <a class="nav-brand" href="#overview">Moving Without Meaning</a>
     <div class="nav-links">
-      <a href="#watch">Videos</a>
       <a href="#abstract">Abstract</a>
+      <a href="#watch">Videos</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#validity">Does SER Work?</a>
       <a href="#results">Results</a>
@@ -39,7 +39,7 @@
     <div class="hero-card">
       <span class="badge">Project Page</span>
       <h1 class="title">Moving Without Meaning: Benchmarking Semantic Expressiveness in Co&#8209;Speech Gesture Generation</h1>
-      <p class="subtitle">Do generated gestures show what the speech means? A benchmark that compares them with how people gesture for the same word.</p>
+      <p class="subtitle">A benchmark of whether generated gestures show what the speech means, measured against real people.</p>
       <div class="authors">Anonymous Authors</div>
       <div class="venue"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Under review</div>
       <div class="buttons">
@@ -53,9 +53,16 @@
 
   <section class="section">
     <figure class="teaser">
-      <img src="static/img/teaser.png" alt="A speaker says 'huge' and spreads both hands. GestureLSM also spreads its arms, while EMAGE and MIBURI do not. FGD, beat consistency and diversity do not separate them; SER does.">
-      <figcaption><strong>Current metrics do not measure whether generated gestures show the meaning of a word.</strong> The speaker says &ldquo;huge&rdquo; and spreads both hands. GestureLSM also spreads its arms, but EMAGE and MIBURI do not. FGD (on this sample alone), beat consistency and diversity do not separate them. Our Semantic Expressiveness Rating (SER) compares each clip with human references for the same word, and only the reconstructed motion and GestureLSM score above a typical human gesture (1500). We chose this sample to illustrate the scale; GestureLSM ranks 8th of 11 overall.</figcaption>
+      <img src="static/img/teaser.png" alt="A speaker says 'huge' and spreads both hands. GestureLSM also spreads both hands, while MambaTalk, MIBURI and EMAGE do not. FGD, beat consistency and diversity do not separate them; SER does.">
+      <figcaption><strong>Current metrics do not measure whether generated gestures show the meaning of a word.</strong> The speaker says &ldquo;huge&rdquo; and spreads both hands. GestureLSM also spreads both hands, but MambaTalk, MIBURI and EMAGE do not. FGD (on this sample alone), beat consistency and diversity do not separate them. Our Semantic Expressiveness Rating (SER) compares each clip with human references for the same word, and only GestureLSM scores above a typical human gesture (1500). We chose this sample to illustrate the scale; GestureLSM ranks 8th of 11 overall.</figcaption>
     </figure>
+  </section>
+
+  <section class="section" id="abstract">
+    <div class="card">
+      <h2>Abstract</h2>
+      <p class="abstract">Co-speech gesture generators now animate characters in film, games and virtual agents. They produce natural motion that follows the rhythm of speech. However, they rarely produce meaningful gestures that show what the speech means. Moreover, current benchmarks measure only rhythm and realism, and none evaluate whether a gesture shows a word's meaning. Additionally, measuring the semantic expressiveness of a gesture has several challenges. People gesture for the same word in many forms, and some show it more clearly than others. A single ground-truth pose cannot capture this range. We introduce a benchmark that grades the semantic expressiveness of a generated gesture, <em>i.e.</em>, how well it shows a word compared with how people gesture for it. Our judge is trained on word-level gesture labels from three datasets and scores how well a clip shows a marked word in its sentence. It then compares a generated clip's score with those of people who gesture for the same word. The comparison gives the Semantic Expressiveness Rating (SER), an Elo-style scale where a typical human gesture scores 1500. Our results show that the judge tells which word a held-out human gesture shows, while existing scorers stay near chance. Lastly, we benchmark ten recent generators and find that generating semantically expressive gestures remains challenging.</p>
+    </div>
   </section>
 
   <section class="section" id="watch">
@@ -63,22 +70,15 @@
       <h2>Watch the Judge</h2>
       <p class="lead">One sentence, the speaker and several generators. Below the motion, each clip's judge score for the marked word is drawn live, in the clip's colour. Clips that show the word rise inside the scored span; the others stay flat. Turn on the sound to hear the sentence.</p>
       <div class="tabs" role="tablist" aria-label="Example">
-        <button role="tab" aria-selected="true" data-video="static/video/score_horizontal.mp4" data-poster="static/video/score_horizontal.jpg" data-cap="<strong>&ldquo;horizontal&rdquo;.</strong> The speaker beats all human references for the word. SemTalk (82%) and, less clearly, RAG-Gesture (36%) also gesture for it, and their scores rise inside the scored span. GestureLSM, EMAGE, MambaTalk and MIBURI beat at most 9% and stay flat.">&ldquo;horizontal&rdquo;</button>
+        <button role="tab" aria-selected="true" data-video="static/video/score_huge.mp4" data-poster="static/video/score_huge.jpg" data-cap="<strong>&ldquo;huge&rdquo;</strong>, the sentence of the teaser. The speaker beats 82% of human references for the word, and GestureLSM (85%) also spreads both hands; both scores rise inside the scored span. SemTalk, EMAGE, MambaTalk and MIBURI beat 9% to 21% and stay low.">&ldquo;huge&rdquo;</button>
         <button role="tab" aria-selected="false" data-video="static/video/score_long.mp4" data-poster="static/video/score_long.jpg" data-cap="<strong>&ldquo;long&rdquo;.</strong> RAG-Gesture retrieves a gesture labelled &ldquo;long&rdquo; from its library and, like the speaker, beats all human references. SemTalk, GestureLSM, EMAGE and MIBURI beat 17% to 33%, and their scores stay low.">&ldquo;long&rdquo;</button>
       </div>
       <figure class="fig">
-        <video id="watch-video" class="video" controls loop playsinline preload="metadata" poster="static/video/score_horizontal.jpg">
-          <source src="static/video/score_horizontal.mp4" type="video/mp4">
+        <video id="watch-video" class="video" controls loop playsinline preload="metadata" poster="static/video/score_huge.jpg">
+          <source src="static/video/score_huge.mp4" type="video/mp4">
         </video>
-        <figcaption id="watch-cap"><strong>&ldquo;horizontal&rdquo;.</strong> The speaker beats all human references for the word. SemTalk (82%) and, less clearly, RAG-Gesture (36%) also gesture for it, and their scores rise inside the scored span. GestureLSM, EMAGE, MambaTalk and MIBURI beat at most 9% and stay flat.</figcaption>
+        <figcaption id="watch-cap"><strong>&ldquo;huge&rdquo;</strong>, the sentence of the teaser. The speaker beats 82% of human references for the word, and GestureLSM (85%) also spreads both hands; both scores rise inside the scored span. SemTalk, EMAGE, MambaTalk and MIBURI beat 9% to 21% and stay low.</figcaption>
       </figure>
-    </div>
-  </section>
-
-  <section class="section" id="abstract">
-    <div class="card">
-      <h2>Abstract</h2>
-      <p class="abstract">Co-speech gesture generators now animate characters in film, games and virtual agents. They produce natural motion that follows the rhythm of speech. However, they rarely produce meaningful gestures that show what the speech means. Moreover, current benchmarks measure only rhythm and realism, and none evaluate whether a gesture shows a word's meaning. Additionally, measuring the semantic expressiveness of a gesture has several challenges. People gesture for the same word in many forms, and some show it more clearly than others. A single ground-truth pose cannot capture this range. We introduce a benchmark that grades the semantic expressiveness of a generated gesture, <em>i.e.</em>, how well it shows a word compared with how people gesture for it. Our judge is trained on word-level gesture labels from three datasets and scores how well a clip shows a marked word in its sentence. It then compares a generated clip's score with those of people who gesture for the same word. The comparison gives the Semantic Expressiveness Rating (SER), an Elo-style scale where a typical human gesture scores 1500. Our results show that the judge tells which word a held-out human gesture shows, while existing scorers stay near chance. Lastly, we benchmark ten recent generators and find that generating semantically expressive gestures remains challenging.</p>
     </div>
   </section>
 
@@ -95,10 +95,13 @@
         <img src="static/img/overview.png" alt="Overview of the benchmark on one sample: word spans, clip and adjusted scores from the judge, the win rate against references, and the dataset score converted to SER.">
         <figcaption><strong>Scoring one sample.</strong> (a) Each word of the sample with enough references is scored in its span, from 1&nbsp;s before to 0.5&nbsp;s after the word. (b) The judge scores the generated clip on each word; the mean of its five highest frame scores, minus its mean score on 40 unrelated words, gives the adjusted score. (c) The win rate is the share of references, people gesturing for the word, that the clip beats. (d) We average over samples, words and datasets and convert the result to SER.</figcaption>
       </figure>
-      <figure class="fig narrow">
-        <img src="static/img/judge.png" alt="Schematic of one training batch of the judge: a T5 text encoder, a motion encoder, and contrastive, sigmoid and cross-dataset losses.">
-        <figcaption><strong>Training the judge.</strong> T5 encodes each sentence into a vector for its marked word, and a temporal convolutional network encodes each frame of a clip. The contrastive loss tells gestures for different words apart, the sigmoid loss gives a low score when no gesture shows the word, and the cross-dataset term links the same word across datasets.</figcaption>
-      </figure>
+      <details class="more">
+        <summary>How the judge is trained</summary>
+  <figure class="fig narrow">
+          <img src="static/img/judge.svg" alt="Schematic of one training batch of the judge: a T5 text encoder, a motion encoder, and contrastive, sigmoid and cross-dataset losses.">
+          <figcaption>T5 encodes each sentence into a vector for its marked word, and a temporal convolutional network encodes each frame of a clip. The contrastive loss tells gestures for different words apart, the sigmoid loss puts the scores of all sentences on one scale, and the cross-dataset term links the same word across datasets.</figcaption>
+        </figure>
+      </details>
     </div>
   </section>
 
@@ -111,20 +114,58 @@
           <caption>Right-word accuracy on the benchmark samples: how often a held-out gesture for the marked word scores above a gesture for another word. Chance is 0.5.</caption>
           <thead><tr><th>Scorer</th><th>GRW</th><th>Seamless</th><th>BEAT2</th></tr></thead>
           <tbody>
-            <tr class="ours"><td>Judge (ours)</td><td>0.834</td><td>0.781</td><td>0.730</td></tr>
-            <tr><td>TMR, released</td><td>0.521</td><td>0.559</td><td>0.533</td></tr>
-            <tr><td>TMR, retrained on our data</td><td>0.771</td><td>0.742</td><td>0.706</td></tr>
             <tr><td>FGD features</td><td>0.591</td><td>0.584</td><td>0.577</td></tr>
             <tr><td>Kinematic statistics</td><td>0.563</td><td>0.550</td><td>0.542</td></tr>
             <tr><td>CLIP ViT-L/14</td><td>0.529</td><td>0.512</td><td>0.513</td></tr>
             <tr><td>X-CLIP</td><td>0.511</td><td>0.505</td><td>0.493</td></tr>
+            <tr><td>TMR, released</td><td>0.521</td><td>0.559</td><td>0.533</td></tr>
+            <tr><td>TMR, retrained on our data</td><td>0.771</td><td>0.742</td><td>0.706</td></tr>
+            <tr class="ours"><td>Judge (ours)</td><td>0.834</td><td>0.781</td><td>0.730</td></tr>
           </tbody>
         </table>
       </div>
-      <figure class="fig narrow">
-        <img src="static/img/edits.png" alt="SER after controlled edits: shrinking, shifting or mixing a real gesture lowers SER toward the floors; blending a person's gesture for the word into generated motion raises it.">
-        <figcaption><strong>SER follows controlled edits.</strong> Shrinking a real gesture toward the mean pose, shifting it in time against the audio, or mixing it with a gesture for another word lowers SER gradually toward the floors. Blending a held-out person's gesture for the word into generated motion raises the generators' SER from 1230 to 1316 and 1387.</figcaption>
-      </figure>
+      <h3 class="sub">Controlled edits</h3>
+      <p class="sub-lead">We change real gestures from 606 GRW samples in controlled ways: shrink the movement, shift it in time against the speech, or mix in another word&rsquo;s gesture. Each edit should lower SER toward the floors, while blending a person&rsquo;s gesture for the word into generated motion should raise it.</p>
+      <div class="edits">
+<div class="board grouped" style="--gt:95.2%;--f0:5.0%;--f1:7.2%">
+<div class="board-head"><h3>SER after controlled edits</h3><span>606 GRW samples, 95% CI on hover</span></div>
+<div class="grp orig"><div class="grp-title">Ground-truth motion</div>
+<div class="lb-row orig" style="--v:95.2%;--lo:91.0%;--hi:99.6%" title="95% CI 1491 to 1519"><span class="nm">As recorded</span><span class="bar"><i></i><b></b></span><span class="val">1505</span></div>
+</div>
+<div class="grps">
+<div class="grp scale"><div class="grp-title">Smaller movement</div>
+<div class="lb-row scale" style="--v:93.5%;--lo:88.8%;--hi:98.2%" title="95% CI 1484 to 1514"><span class="nm">scaled to 75%</span><span class="bar"><i></i><b></b></span><span class="val">1499</span></div>
+<div class="lb-row scale" style="--v:82.3%;--lo:76.8%;--hi:87.8%" title="95% CI 1446 to 1481"><span class="nm">scaled to 50%</span><span class="bar"><i></i><b></b></span><span class="val">1463</span></div>
+<div class="lb-row scale" style="--v:59.7%;--lo:52.6%;--hi:66.6%" title="95% CI 1368 to 1413"><span class="nm">scaled to 25%</span><span class="bar"><i></i><b></b></span><span class="val">1391</span></div>
+</div>
+<div class="grp shift"><div class="grp-title">Time shift, later</div>
+<div class="lb-row shift" style="--v:83.2%;--lo:78.5%;--hi:88.2%" title="95% CI 1451 to 1482"><span class="nm">0.5 s</span><span class="bar"><i></i><b></b></span><span class="val">1466</span></div>
+<div class="lb-row shift" style="--v:51.6%;--lo:45.1%;--hi:57.8%" title="95% CI 1344 to 1385"><span class="nm">1 s</span><span class="bar"><i></i><b></b></span><span class="val">1365</span></div>
+<div class="lb-row shift" style="--v:31.5%;--lo:23.4%;--hi:40.0%" title="95% CI 1275 to 1328"><span class="nm">2 s</span><span class="bar"><i></i><b></b></span><span class="val">1301</span></div>
+</div>
+<div class="grp shift"><div class="grp-title">Time shift, earlier</div>
+<div class="lb-row shift" style="--v:86.3%;--lo:81.7%;--hi:91.1%" title="95% CI 1461 to 1491"><span class="nm">0.5 s</span><span class="bar"><i></i><b></b></span><span class="val">1476</span></div>
+<div class="lb-row shift" style="--v:68.2%;--lo:62.7%;--hi:74.0%" title="95% CI 1401 to 1437"><span class="nm">1 s</span><span class="bar"><i></i><b></b></span><span class="val">1418</span></div>
+<div class="lb-row shift" style="--v:31.7%;--lo:23.6%;--hi:39.9%" title="95% CI 1276 to 1328"><span class="nm">2 s</span><span class="bar"><i></i><b></b></span><span class="val">1301</span></div>
+</div>
+<div class="grp mix"><div class="grp-title">Mixed with another word&rsquo;s gesture</div>
+<div class="lb-row mix" style="--v:88.3%;--lo:83.1%;--hi:93.5%" title="95% CI 1466 to 1499"><span class="nm">25%</span><span class="bar"><i></i><b></b></span><span class="val">1483</span></div>
+<div class="lb-row mix" style="--v:58.2%;--lo:51.4%;--hi:65.0%" title="95% CI 1364 to 1408"><span class="nm">50%</span><span class="bar"><i></i><b></b></span><span class="val">1386</span></div>
+<div class="lb-row mix" style="--v:23.2%;--lo:15.1%;--hi:31.0%" title="95% CI 1248 to 1299"><span class="nm">75%</span><span class="bar"><i></i><b></b></span><span class="val">1274</span></div>
+</div>
+<div class="grp gen"><div class="grp-title">Generators (mean of 10)</div>
+<div class="lb-row gen" style="--v:9.5%;--lo:1.4%;--hi:17.4%" title="95% CI 1205 to 1256"><span class="nm">as generated</span><span class="bar"><i></i><b></b></span><span class="val">1230</span></div>
+<div class="lb-row gen" style="--v:36.4%;--lo:30.1%;--hi:42.4%" title="95% CI 1296 to 1336"><span class="nm">+ 50% gesture for word</span><span class="bar"><i></i><b></b></span><span class="val">1316</span></div>
+<div class="lb-row gen" style="--v:58.4%;--lo:52.5%;--hi:63.9%" title="95% CI 1368 to 1404"><span class="nm">+ 100% gesture for word</span><span class="bar"><i></i><b></b></span><span class="val">1387</span></div>
+</div>
+<div class="grp floor"><div class="grp-title">Floors</div>
+<div class="lb-row floor" style="--v:7.2%;--lo:0.0%;--hi:15.5%" title="95% CI 1196 to 1250"><span class="nm">no-gesture floor</span><span class="bar"><i></i><b></b></span><span class="val">1223</span></div>
+<div class="lb-row floor" style="--v:5.0%;--lo:0.0%;--hi:11.1%" title="95% CI 1196 to 1236"><span class="nm">other-word floor</span><span class="bar"><i></i><b></b></span><span class="val">1216</span></div>
+</div>
+</div>
+</div>
+      </div>
+      <p class="lb-note"><strong>SER follows controlled edits.</strong> Every edit lowers SER gradually toward the floors (shaded), and mixing keeps the amount of movement about the same, so the score does not just measure movement. Blending a held-out person&rsquo;s gesture for the word into the generators&rsquo; output raises their SER from 1230 to 1387. Dashed line: the motion as recorded; shaded: the floors.</p>
       <div class="callout">
         <i class="fa-solid fa-users" aria-hidden="true"></i>
         <p><strong>Agreement with people.</strong> Three raters compared 150 pairs of clips and chose the one that shows the marked word better. The judge agrees with the majority of two raters on 79% of the pairs of a generated clip and a human reference, close to the 83% agreement between raters.</p>
@@ -141,42 +182,90 @@
         <div class="metric"><strong>Close to the floors</strong><span>All generators score near human motion that does not show the word: a gesture for another word, or no gesture.</span></div>
         <div class="metric"><strong>Also on BEAT2</strong><span>On their own training data, the gap shrinks to 51&ndash;150 SER but remains.</span></div>
       </div>
-      <figure class="fig narrow">
-        <img src="static/img/ranking.png" alt="Ranking of ten generators against the ground-truth motion and two floors, out of domain and on BEAT2, with 95% confidence intervals.">
-        <figcaption><strong>Benchmark ranking of ten generators</strong> against the ground-truth motion and two floors. SER out of domain (amber; GRW, Seamless) and in domain (indigo; BEAT2), with 95% CIs. Shaded: floors. Dashed: a typical human gesture. Significantly * above the other-word floor or &dagger; below the top generator.</figcaption>
-      </figure>
+      <div class="boards">
+<div class="board" style="--gt:95.9%;--f0:16.5%;--f1:23.5%"><div class="board-head"><h3>Out of domain</h3><span>GRW + Seamless, speech the generators never saw</span></div>
+<div class="lb-row ref gt" style="--v:95.9%"><span class="rk">&ndash;</span><span class="nm">Ground truth (people)</span><span class="bar"><i></i></span><span class="val">1507</span></div>
+<ol class="lb">
+<li class="lb-row first" style="--v:32.1%;--lo:24.7%;--hi:38.3%" title="95% CI 1279 to 1323"><span class="rk">1</span><span class="nm">RAG-Gesture + retrieval<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1303</span></li>
+<li class="lb-row second" style="--v:27.3%;--lo:20.4%;--hi:34.0%" title="95% CI 1265 to 1309"><span class="rk">2</span><span class="nm">SemTalk<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1287</span></li>
+<li class="lb-row third" style="--v:25.7%;--lo:17.4%;--hi:33.0%" title="95% CI 1256 to 1306"><span class="rk">3</span><span class="nm">MambaTalk<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1282</span></li>
+<li class="lb-row" style="--v:25.4%;--lo:17.8%;--hi:32.4%" title="95% CI 1257 to 1304"><span class="rk">4</span><span class="nm">SynTalker</span><span class="bar"><i></i><b></b></span><span class="val">1281</span></li>
+<li class="lb-row" style="--v:21.8%;--lo:13.5%;--hi:29.4%" title="95% CI 1243 to 1294"><span class="rk">5</span><span class="nm">DisCo</span><span class="bar"><i></i><b></b></span><span class="val">1270</span></li>
+<li class="lb-row" style="--v:21.3%;--lo:13.9%;--hi:28.1%" title="95% CI 1245 to 1290"><span class="rk">6</span><span class="nm">StreamTalk</span><span class="bar"><i></i><b></b></span><span class="val">1268</span></li>
+<li class="lb-row" style="--v:21.3%;--lo:14.2%;--hi:27.6%" title="95% CI 1245 to 1288"><span class="rk">7</span><span class="nm">RAG-Gesture, no retrieval</span><span class="bar"><i></i><b></b></span><span class="val">1268</span></li>
+<li class="lb-row" style="--v:20.7%;--lo:13.1%;--hi:27.8%" title="95% CI 1242 to 1289"><span class="rk">8</span><span class="nm">GestureLSM</span><span class="bar"><i></i><b></b></span><span class="val">1266</span></li>
+<li class="lb-row" style="--v:20.0%;--lo:12.0%;--hi:27.4%" title="95% CI 1238 to 1288"><span class="rk">9</span><span class="nm">CaMN</span><span class="bar"><i></i><b></b></span><span class="val">1264</span></li>
+<li class="lb-row" style="--v:19.0%;--lo:10.8%;--hi:26.4%" title="95% CI 1235 to 1285"><span class="rk">10</span><span class="nm">EMAGE</span><span class="bar"><i></i><b></b></span><span class="val">1261</span></li>
+<li class="lb-row" style="--v:14.7%;--lo:8.1%;--hi:20.7%" title="95% CI 1226 to 1266"><span class="rk">11</span><span class="nm">MIBURI</span><span class="bar"><i></i><b></b></span><span class="val">1247</span></li>
+</ol>
+<div class="lb-row ref floor" style="--v:23.5%"><span class="rk">&ndash;</span><span class="nm">No-gesture floor</span><span class="bar"><i></i></span><span class="val">1275</span></div>
+<div class="lb-row ref floor" style="--v:16.5%"><span class="rk">&ndash;</span><span class="nm">Other-word floor</span><span class="bar"><i></i></span><span class="val">1253</span></div>
+</div>
+<div class="board" style="--gt:85.4%;--f0:38.5%;--f1:54.7%"><div class="board-head"><h3>In domain</h3><span>BEAT2, the generators' training data</span></div>
+<div class="lb-row ref gt" style="--v:85.4%"><span class="rk">&ndash;</span><span class="nm">Ground truth (people)</span><span class="bar"><i></i></span><span class="val">1473</span></div>
+<ol class="lb">
+<li class="lb-row first" style="--v:69.5%;--lo:59.9%;--hi:78.8%" title="95% CI 1392 to 1452"><span class="rk">1</span><span class="nm">RAG-Gesture + retrieval<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1422</span></li>
+<li class="lb-row second" style="--v:56.5%;--lo:46.5%;--hi:65.4%" title="95% CI 1349 to 1409"><span class="rk">2</span><span class="nm">RAG-Gesture, no retrieval<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1381</span></li>
+<li class="lb-row third" style="--v:55.9%;--lo:41.1%;--hi:70.2%" title="95% CI 1332 to 1425"><span class="rk">3</span><span class="nm">GestureLSM<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1379</span></li>
+<li class="lb-row" style="--v:51.6%;--lo:39.6%;--hi:63.1%" title="95% CI 1327 to 1402"><span class="rk">4</span><span class="nm">CaMN<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1365</span></li>
+<li class="lb-row" style="--v:51.0%;--lo:38.5%;--hi:63.9%" title="95% CI 1323 to 1405"><span class="rk">5</span><span class="nm">StreamTalk</span><span class="bar"><i></i><b></b></span><span class="val">1363</span></li>
+<li class="lb-row" style="--v:50.7%;--lo:37.1%;--hi:64.3%" title="95% CI 1319 to 1406"><span class="rk">6</span><span class="nm">MambaTalk</span><span class="bar"><i></i><b></b></span><span class="val">1362</span></li>
+<li class="lb-row" style="--v:47.0%;--lo:35.5%;--hi:58.3%" title="95% CI 1314 to 1386"><span class="rk">7</span><span class="nm">DisCo<sup>*</sup></span><span class="bar"><i></i><b></b></span><span class="val">1350</span></li>
+<li class="lb-row" style="--v:44.7%;--lo:34.1%;--hi:55.0%" title="95% CI 1309 to 1376"><span class="rk">8</span><span class="nm">SynTalker</span><span class="bar"><i></i><b></b></span><span class="val">1343</span></li>
+<li class="lb-row" style="--v:44.7%;--lo:31.7%;--hi:57.1%" title="95% CI 1301 to 1383"><span class="rk">9</span><span class="nm">SemTalk</span><span class="bar"><i></i><b></b></span><span class="val">1343</span></li>
+<li class="lb-row" style="--v:40.1%;--lo:29.7%;--hi:50.0%" title="95% CI 1295 to 1360"><span class="rk">10</span><span class="nm">MIBURI</span><span class="bar"><i></i><b></b></span><span class="val">1328</span></li>
+<li class="lb-row" style="--v:38.4%;--lo:27.8%;--hi:48.0%" title="95% CI 1289 to 1354"><span class="rk">11</span><span class="nm">EMAGE</span><span class="bar"><i></i><b></b></span><span class="val">1323</span></li>
+</ol>
+<div class="lb-row ref floor" style="--v:54.7%"><span class="rk">&ndash;</span><span class="nm">No-gesture floor</span><span class="bar"><i></i></span><span class="val">1375</span></div>
+<div class="lb-row ref floor" style="--v:38.5%"><span class="rk">&ndash;</span><span class="nm">Other-word floor</span><span class="bar"><i></i></span><span class="val">1323</span></div>
+</div>
+      </div>
+      <p class="lb-note">SER with 95% confidence intervals (hover a row). Bars start at 1200; the dashed line marks the ground-truth motion and the shaded band the two floors. <sup>*</sup>Significantly above the other-word floor. The ranks are close: out of domain, only RAG-Gesture with retrieval is clearly ahead, and two generators typically differ significantly only when their gap exceeds about 32 SER.</p>
     </div>
   </section>
 
   <section class="section" id="examples">
     <div class="card">
       <h2>How the Judge Reads a Clip</h2>
-      <p class="lead">The judge's score for each word of the sentence over time, on the sample from the teaser. All four clips move during the speaker's gesture, but only the two that spread their hands score high for &ldquo;huge&rdquo;.</p>
+      <p class="lead">The judge&rsquo;s score for each word of the sentence over time, on the teaser&rsquo;s sample, for the speaker and every generator (ordered by score). Clips that spread their arms score high for &ldquo;huge&rdquo;; the others barely move it.</p>
       <div class="tabs" role="tablist" aria-label="Clip">
         <button role="tab" aria-selected="true" aria-controls="wc-panel" data-src="static/img/wc_speaker.png" data-cap="<strong>Ground-truth motion.</strong> The score for &ldquo;huge&rdquo; rises as the speaker spreads both hands and peaks at 0.37, 0.3&nbsp;s after the word, the highest of all 17 words. The clip beats 28 of 33 references.">Ground truth</button>
         <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_gesturelsm.png" data-cap="<strong>GestureLSM.</strong> It spreads both arms wide, and &ldquo;huge&rdquo; peaks at 0.45 right on the word. The clip beats 32 of 33 references, an exception for a generator that ranks 8th of 11 overall.">GestureLSM</button>
-        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_emage.png" data-cap="<strong>EMAGE.</strong> It raises one hand toward its face but never spreads its hands. &ldquo;Huge&rdquo; stays close to zero, 14 other words peak higher, and the clip beats only 4 of 33 references.">EMAGE</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_rag.png" data-cap="<strong>RAG-Gesture (released, with retrieval).</strong> It spreads both arms wide, but about 0.7&nbsp;s before the word. &ldquo;Huge&rdquo; peaks at 0.39 at 1.2&nbsp;s, still inside the scored span and the highest of all 17 words. The clip beats 29 of 33 references.">RAG-Gesture</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_streamtalk.png" data-cap="<strong>StreamTalk.</strong> It swings one arm out to the side as the word is spoken. &ldquo;Huge&rdquo; peaks at 0.34 right on the word, the highest of all 17 words, and the clip beats 28 of 33 references, although only one arm opens.">StreamTalk</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_mambatalk.png" data-cap="<strong>MambaTalk.</strong> One hand rises to the chest early in the span. &ldquo;Huge&rdquo; peaks at only 0.24 at 1.0&nbsp;s, almost a second before the word; no other word peaks higher, but the clip beats just 15 of 33 references.">MambaTalk</button>
         <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_miburi.png" data-cap="<strong>MIBURI.</strong> &ldquo;Huge&rdquo; peaks right on the word, so the timing is right, but the hand goes to the face. Eight other words peak higher, and the clip beats only 6 of 33 references.">MIBURI</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_emage.png" data-cap="<strong>EMAGE.</strong> It raises one hand toward its face but never spreads its hands. &ldquo;Huge&rdquo; stays close to zero, 14 other words peak higher, and the clip beats only 4 of 33 references.">EMAGE</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_semtalk.png" data-cap="<strong>SemTalk.</strong> Its hands stay near the chest and later go to the face, but never spread. &ldquo;Huge&rdquo; peaks at only 0.08 on the word, 14 other words peak higher, and the clip beats 1 of 33 references.">SemTalk</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_syntalker.png" data-cap="<strong>SynTalker.</strong> Its hands stay low by the hips. &ldquo;Huge&rdquo; stays near zero throughout, 14 other words peak higher, and the clip beats none of the 33 references.">SynTalker</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_disco.png" data-cap="<strong>DisCo.</strong> It holds both fists at the chest for the whole clip. &ldquo;Huge&rdquo; stays below zero inside its span, 14 other words peak higher, and the clip beats none of the 33 references.">DisCo</button>
+        <button role="tab" aria-selected="false" aria-controls="wc-panel" data-src="static/img/wc_camn.png" data-cap="<strong>CaMN.</strong> Its hands rest at the waist. &ldquo;Huge&rdquo; stays below zero inside its span and every other word peaks higher; the clip beats none of the 33 references.">CaMN</button>
       </div>
       <figure class="fig" id="wc-panel" role="tabpanel">
         <img id="wc-img" src="static/img/wc_speaker.png" alt="Judge scores over time for each word of the sentence, with the word 'huge' highlighted.">
         <figcaption id="wc-cap"><strong>Ground-truth motion.</strong> The score for &ldquo;huge&rdquo; rises as the speaker spreads both hands and peaks at 0.37, 0.3&nbsp;s after the word, the highest of all 17 words. The clip beats 28 of 33 references.</figcaption>
       </figure>
-      <figure class="fig">
+      <details class="more">
+        <summary>SemTalk and RAG-Gesture: emphasis vs. retrieval</summary>
+        <figure class="fig">
         <img src="static/img/semtalk_rag.png" alt="SemTalk and RAG-Gesture on a sample for 'long': SemTalk moves faster when its semantic gate is on but does not gesture for the word, while RAG-Gesture with retrieval spreads both arms wide.">
         <figcaption><strong>SemTalk emphasizes, while RAG-Gesture with retrieval gestures for the word.</strong> On a sample for &ldquo;long&rdquo;, SemTalk moves its hands faster and further while its semantic gate is on, but does not gesture for the word. With retrieval, RAG-Gesture inserts a gesture labelled &ldquo;long&rdquo;, spreads both arms wide and beats all 18 references.</figcaption>
       </figure>
-      <figure class="fig">
+      </details>
+      <details class="more">
+        <summary>Why vision-language models fail</summary>
+        <figure class="fig">
         <img src="static/img/vlm_explode.png" alt="A vision-language model and our judge on a gesture for 'explode'.">
         <figcaption><strong>Why vision-language models fail.</strong> Qwen3.8 describes the speaker flinging both arms wide when it chooses among five words, but calls the same movement shrug-like when asked about &ldquo;explode&rdquo; directly. Our judge picks the right word.</figcaption>
       </figure>
+      </details>
     </div>
   </section>
 
   <section class="section" id="gallery">
     <div class="card">
       <h2>More Examples</h2>
-      <p class="lead">Each video plays one benchmark sentence with its audio: the real speaker, the speaker's reconstructed motion, and six generators on the same 4 seconds. Each clip shows the share of human references for the marked word that it beats.</p>
+      <p class="lead">Each video plays one benchmark sentence with its audio: the real speaker and six generators on the same 4 seconds. Each clip shows the share of human references for the marked word that it beats.</p>
       <div class="tabs" role="tablist" aria-label="Word">
         <button role="tab" aria-selected="true" data-video="static/video/large.mp4" data-poster="static/video/large.jpg" data-cap="<strong>&ldquo;large&rdquo;</strong>. The speaker beats 100% of human references for the word. The six generators beat 0% to 6%.">large</button>
         <button role="tab" aria-selected="false" data-video="static/video/long.mp4" data-poster="static/video/long.jpg" data-cap="<strong>&ldquo;long&rdquo;</strong>. The speaker beats 100% of human references for the word. RAG-Gesture also beats 100%; the other generators beat 17% to 33%.">long</button>

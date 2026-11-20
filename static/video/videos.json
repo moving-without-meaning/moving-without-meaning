@@ -42,24 +42,45 @@
   }
  },
  {
-  "item": "grw-v2-000129",
-  "word": "circle",
-  "file": "static/video/circle.mp4",
-  "poster": "static/video/circle.jpg",
-  "sentence": "We're on the road to this guided lake. Like a circle really.",
+  "item": "grw-v2-000501",
+  "word": "knock",
+  "file": "static/video/knock.mp4",
+  "poster": "static/video/knock.jpg",
+  "sentence": "Going on, why would God allow this and the knock on the door comes?",
   "scores": {
-   "video": 0.947,
-   "rag": 0.211,
-   "semtalk": 0.526,
-   "gesturelsm": 0.474,
-   "emage": 0.526,
-   "mambatalk": 0.211,
-   "miburi": 0.211
+   "video": 1.0,
+   "rag": 0.0,
+   "semtalk": 0.0,
+   "gesturelsm": 0.0,
+   "emage": 0.0,
+   "mambatalk": 0.0,
+   "miburi": 0.125
   },
   "sentence_timing": {
-   "coverage": 0.42,
-   "offset": 0.85,
-   "timed": false
+   "coverage": 0.93,
+   "offset": 0.95,
+   "timed": true
+  }
+ },
+ {
+  "item": "grw-v2-000413",
+  "word": "height",
+  "file": "static/video/height.mp4",
+  "poster": "static/video/height.jpg",
+  "sentence": "Total height and subtract your inseam, which is the inside the inseam of your pants.",
+  "scores": {
+   "video": 1.0,
+   "rag": 0.143,
+   "semtalk": 0.0,
+   "gesturelsm": 0.0,
+   "emage": 0.0,
+   "mambatalk": 0.0,
+   "miburi": 0.0
+  },
+  "sentence_timing": {
+   "coverage": 1.0,
+   "offset": 1.04,
+   "timed": true
   }
  },
  {

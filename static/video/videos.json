@@ -124,26 +124,5 @@
    "offset": 0.83,
    "timed": true
   }
- },
- {
-  "item": "grw-v2-000870",
-  "word": "tiny",
-  "file": "static/video/tiny.mp4",
-  "poster": "static/video/tiny.jpg",
-  "sentence": "Basically some long slicing. So if you have a tiny little blade and you have to slice, you're kind of...",
-  "scores": {
-   "video": 1.0,
-   "rag": 0.042,
-   "semtalk": 0.042,
-   "gesturelsm": 0.042,
-   "emage": 0.042,
-   "mambatalk": 0.042,
-   "miburi": 0.0
-  },
-  "sentence_timing": {
-   "coverage": 0.9,
-   "offset": 0.88,
-   "timed": true
-  }
  }
 ]
